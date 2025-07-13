@@ -49,6 +49,36 @@
             color: #7f8c8d;
             font-size: 1.1rem;
             font-weight: 400;
+            margin-bottom: 5px;
+        }
+        
+        .header .date-info {
+            color: #e74c3c;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .today-info {
+            background: rgba(52, 152, 219, 0.1);
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .today-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 5px 0;
+        }
+        
+        .ekasana-today {
+            color: #e74c3c;
+        }
+        
+        .biasana-today {
+            color: #27ae60;
         }
         
         .table-container {
@@ -294,6 +324,12 @@
     <div class="container">
         <div class="header fade-in">
             <h1>🌹 જય જિનેન્દ્ર 🌹</h1>
+            <p class="date-info">આજની તારીખ: ૧૩ જુલાઈ, ૨૦૨૫ | શ્રાવણ કૃષ્ણા ૩</p>
+            <div class="today-info">
+                <p class="subtitle">આજના એકાસણા અને બિયાસણા:</p>
+                <p id="today-ekasana" class="today-name ekasana-today">એકાસણા: નામ બાકી છે</p>
+                <p id="today-biasana" class="today-name biasana-today">બિયાસણા: નામ બાકી છે</p>
+            </div>
             <p class="subtitle">એકાસણા અને બિયાસણા ની યાદી - બાળકોના નામ</p>
         </div>
         
@@ -371,12 +407,12 @@
             2: "પ્રાંશી ખંધાર",
             3: "",
             4: "",
-            5: "રીયા એસ શાહ",
-            6: "રુદ્રા એસ શાહ",
+            5: "રીયા સૌરભભાઈ શાહ",
+            6: "રુદ્રા સૌરભભાઈ શાહ",
             7: "ધ્રુવી ખંધાર",
             8: "દિયા ખંધાર",
             9: "મોશ્વા ગોપાણી",
-            10: "દર્શ એસ શાહ",
+            10: "દર્શ સૌરીનભાઈ શાહ",
             11: "પ્રિયાંક એમ શાહ",
             12: "",
             13: "",
@@ -565,7 +601,22 @@
         document.addEventListener('DOMContentLoaded', function() {
             createCombinedTable();
             calculateStats();
+            showTodaysNames();
         });
+        
+        // આજની તારીખ માટે નામ બતાવવાનું function
+        function showTodaysNames() {
+            const today = 13; // આજની તારીખ
+            
+            const todayEkasana = ekasanaData[today];
+            const todayBiasana = biasanaData[today];
+            
+            const ekasanaDisplay = (!todayEkasana || todayEkasana.trim() === '') ? 'નામ બાકી છે' : todayEkasana;
+            const biasanaDisplay = (!todayBiasana || todayBiasana.trim() === '') ? 'નામ બાકી છે' : todayBiasana;
+            
+            document.getElementById('today-ekasana').textContent = `એકાસણા: ${ekasanaDisplay}`;
+            document.getElementById('today-biasana').textContent = `બિયાસણા: ${biasanaDisplay}`;
+        }
     </script>
 </body>
 </html>
