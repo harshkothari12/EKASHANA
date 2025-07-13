@@ -14,19 +14,19 @@
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         body {
             font-family: 'Noto Sans Gujarati', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
-        
+
         .container {
             max-width: 1400px;
             margin: 0 auto;
         }
-        
+
         .header {
             text-align: center;
             background: rgba(255, 255, 255, 0.95);
@@ -36,7 +36,7 @@
             margin-bottom: 30px;
             backdrop-filter: blur(10px);
         }
-        
+
         .header h1 {
             color: #2c3e50;
             font-size: 2.5rem;
@@ -44,21 +44,21 @@
             margin-bottom: 10px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
-        
+
         .header .subtitle {
-            color: #7f8c8d;
+            color: #34495e;
             font-size: 1.1rem;
-            font-weight: 400;
-            margin-bottom: 5px;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
-        
+
         .header .date-info {
             color: #e74c3c;
             font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
-        
+
         .today-info {
             background: rgba(52, 152, 219, 0.1);
             border: 2px solid #3498db;
@@ -66,21 +66,21 @@
             padding: 15px;
             margin: 15px 0;
         }
-        
+
         .today-name {
             font-size: 1.1rem;
             font-weight: 600;
             margin: 5px 0;
         }
-        
+
         .ekasana-today {
             color: #e74c3c;
         }
-        
+
         .biasana-today {
             color: #27ae60;
         }
-        
+
         .table-container {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 20px;
@@ -89,7 +89,7 @@
             backdrop-filter: blur(10px);
             overflow-x: auto;
         }
-        
+
         .combined-table {
             width: 100%;
             border-collapse: collapse;
@@ -99,7 +99,7 @@
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
+
         .combined-table th {
             background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
@@ -109,15 +109,15 @@
             font-size: 1.2rem;
             border: none;
         }
-        
+
         .combined-table th.ekasana-header {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
-        
+
         .combined-table th.biasana-header {
             background: linear-gradient(135deg, #27ae60, #2ecc71);
         }
-        
+
         .combined-table td {
             padding: 15px;
             border: 1px solid #e0e0e0;
@@ -125,21 +125,21 @@
             transition: all 0.3s ease;
             position: relative;
         }
-        
+
         .combined-table tbody tr:nth-child(even) {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
-        
+
         .combined-table tbody tr:nth-child(odd) {
             background: rgba(255, 255, 255, 0.8);
         }
-        
+
         .combined-table tbody tr:hover {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
             transform: scale(1.01);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
-        
+
         .date-cell {
             font-weight: 700;
             color: #2c3e50;
@@ -148,7 +148,7 @@
             font-size: 1.1rem;
             width: 80px;
         }
-        
+
         .name-cell {
             font-weight: 500;
             color: #2c3e50;
@@ -156,75 +156,75 @@
             padding-left: 20px;
             min-width: 280px;
         }
-        
+
         .ekasana-cell {
             border-left: 4px solid #e74c3c;
         }
-        
+
         .biasana-cell {
             border-left: 4px solid #27ae60;
         }
-        
+
         .empty-cell {
             color: #95a5a6;
             font-style: italic;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
-        
+
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
             margin-top: 30px;
         }
-        
+
         .stats-card {
             padding: 20px;
             border-radius: 15px;
             color: white;
             text-align: center;
         }
-        
+
         .ekasana-stats {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
-        
+
         .biasana-stats {
             background: linear-gradient(135deg, #27ae60, #2ecc71);
         }
-        
+
         .stats-title {
             font-size: 1.3rem;
             font-weight: 600;
             margin-bottom: 15px;
         }
-        
+
         .stats-row {
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
         }
-        
+
         .stat-item {
             text-align: center;
         }
-        
+
         .stat-number {
             font-size: 1.5rem;
             font-weight: 700;
             display: block;
         }
-        
+
         .stat-label {
             font-size: 0.9rem;
             opacity: 0.9;
         }
-        
+
         .action-buttons {
             text-align: center;
             margin-top: 30px;
         }
-        
+
         .btn-custom {
             background: linear-gradient(135deg, #3498db, #2980b9);
             border: none;
@@ -235,37 +235,37 @@
             transition: all 0.3s ease;
             margin: 0 10px;
         }
-        
+
         .btn-custom:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
             color: white;
         }
-        
+
         .btn-print {
             background: linear-gradient(135deg, #8e44ad, #9b59b6);
         }
-        
+
         .btn-print:hover {
             box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
         }
-        
+
         .btn-export {
             background: linear-gradient(135deg, #f39c12, #e67e22);
         }
-        
+
         .btn-export:hover {
             box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
         }
-        
+
         .btn-highlight {
             background: linear-gradient(135deg, #e74c3c, #c0392b);
         }
-        
+
         .btn-highlight:hover {
             box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
         }
-        
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -294,29 +294,54 @@
                 padding: 10px 20px;
             }
         }
-        
+
         .fade-in {
             animation: fadeIn 0.8s ease-in;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .pulse {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        
+
         .highlight-empty {
             background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%) !important;
             border: 2px solid #e74c3c !important;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+                padding: 0 !important;
+            }
+            
+            .header {
+                background: white !important;
+                box-shadow: none !important;
+            }
+            
+            .table-container {
+                background: white !important;
+                box-shadow: none !important;
+            }
+            
+            .action-buttons {
+                display: none !important;
+            }
+            
+            .stats-grid {
+                display: none !important;
+            }
         }
     </style>
 </head>
@@ -324,6 +349,12 @@
     <div class="container">
         <div class="header fade-in">
             <h1>🌹 જય જિનેન્દ્ર 🌹</h1>
+            <p class="subtitle">
+                વિરતી જૈન પાઠશાળા<br>
+                સરનામું : 83/A શ્રીકુંજ શોપિંગ સેન્ટર, પંચદેવ મંદિર નજીક,<br>
+                મુરલીધર ડેરી, ઘાટલોડિયા, અહેમદાબાદ, ગુજરાત - 380061<br>
+                📞 મોબાઇલ નંબર : 9725247990
+            </p>
             <p class="date-info">આજની તારીખ: ૧૩ જુલાઈ, ૨૦૨૫ | શ્રાવણ કૃષ્ણા ૩</p>
             <div class="today-info">
                 <p class="subtitle">આજના એકાસણા અને બિયાસણા:</p>
@@ -332,7 +363,7 @@
             </div>
             <p class="subtitle">એકાસણા અને બિયાસણા ની યાદી - બાળકોના નામ</p>
         </div>
-        
+
         <div class="table-container fade-in">
             <table class="combined-table" id="combined-table">
                 <thead>
@@ -597,13 +628,6 @@
             document.getElementById('biasana-remaining').textContent = 31 - biasanaFilled;
         }
 
-        // પેજ લોડ થતા જ ટેબલ બનાવો
-        document.addEventListener('DOMContentLoaded', function() {
-            createCombinedTable();
-            calculateStats();
-            showTodaysNames();
-        });
-        
         // આજની તારીખ માટે નામ બતાવવાનું function
         function showTodaysNames() {
             const today = 13; // આજની તારીખ
@@ -617,6 +641,13 @@
             document.getElementById('today-ekasana').textContent = `એકાસણા: ${ekasanaDisplay}`;
             document.getElementById('today-biasana').textContent = `બિયાસણા: ${biasanaDisplay}`;
         }
+
+        // પેજ લોડ થતા જ ટેબલ બનાવો
+        document.addEventListener('DOMContentLoaded', function() {
+            createCombinedTable();
+            calculateStats();
+            showTodaysNames();
+        });
     </script>
 </body>
 </html>
