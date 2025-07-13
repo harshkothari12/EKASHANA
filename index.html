@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>એકાસણા યાદી - Ekasana List</title>
+    <title>એકાસણા અને બિયાસણા યાદી</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -23,7 +23,7 @@
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
         
@@ -60,7 +60,7 @@
             overflow-x: auto;
         }
         
-        .ekasana-table {
+        .combined-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
@@ -70,7 +70,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
-        .ekasana-table th {
+        .combined-table th {
             background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
             padding: 15px;
@@ -80,7 +80,15 @@
             border: none;
         }
         
-        .ekasana-table td {
+        .combined-table th.ekasana-header {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .combined-table th.biasana-header {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+        
+        .combined-table td {
             padding: 15px;
             border: 1px solid #e0e0e0;
             text-align: center;
@@ -88,17 +96,17 @@
             position: relative;
         }
         
-        .ekasana-table tbody tr:nth-child(even) {
+        .combined-table tbody tr:nth-child(even) {
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
-        .ekasana-table tbody tr:nth-child(odd) {
+        .combined-table tbody tr:nth-child(odd) {
             background: rgba(255, 255, 255, 0.8);
         }
         
-        .ekasana-table tbody tr:hover {
+        .combined-table tbody tr:hover {
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            transform: scale(1.02);
+            transform: scale(1.01);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
@@ -116,39 +124,55 @@
             color: #2c3e50;
             text-align: left;
             padding-left: 20px;
-            min-width: 250px;
+            min-width: 280px;
+        }
+        
+        .ekasana-cell {
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .biasana-cell {
+            border-left: 4px solid #27ae60;
         }
         
         .empty-cell {
-            color: #e74c3c;
+            color: #95a5a6;
             font-style: italic;
-            background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
         
-        .status-cell {
-            width: 80px;
-        }
-        
-        .status-icon {
-            font-size: 1.3rem;
-        }
-        
-        .filled .status-icon {
-            color: #27ae60;
-        }
-        
-        .empty .status-icon {
-            color: #e74c3c;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: space-around;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
             margin-top: 30px;
+        }
+        
+        .stats-card {
             padding: 20px;
-            background: linear-gradient(135deg, #3498db, #2980b9);
             border-radius: 15px;
             color: white;
+            text-align: center;
+        }
+        
+        .ekasana-stats {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .biasana-stats {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+        }
+        
+        .stats-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .stats-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
         }
         
         .stat-item {
@@ -156,7 +180,7 @@
         }
         
         .stat-number {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             display: block;
         }
@@ -172,7 +196,7 @@
         }
         
         .btn-custom {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            background: linear-gradient(135deg, #3498db, #2980b9);
             border: none;
             color: white;
             padding: 12px 30px;
@@ -184,16 +208,16 @@
         
         .btn-custom:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+            box-shadow: 0 8px 25px rgba(52, 152, 219, 0.4);
             color: white;
         }
         
         .btn-print {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            background: linear-gradient(135deg, #8e44ad, #9b59b6);
         }
         
         .btn-print:hover {
-            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.4);
+            box-shadow: 0 8px 25px rgba(142, 68, 173, 0.4);
         }
         
         .btn-export {
@@ -204,17 +228,25 @@
             box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
         }
         
+        .btn-highlight {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+        }
+        
+        .btn-highlight:hover {
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+        
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
             }
             
-            .ekasana-table {
+            .combined-table {
                 font-size: 0.9rem;
             }
             
-            .ekasana-table th,
-            .ekasana-table td {
+            .combined-table th,
+            .combined-table td {
                 padding: 10px 8px;
             }
             
@@ -223,9 +255,8 @@
                 padding-left: 10px;
             }
             
-            .stats {
-                flex-direction: column;
-                gap: 15px;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
             
             .btn-custom {
@@ -263,15 +294,16 @@
     <div class="container">
         <div class="header fade-in">
             <h1>🌹 જય જિનેન્દ્ર 🌹</h1>
-            <p class="subtitle">એકાસણા ની યાદી - બાળકોના નામ</p>
+            <p class="subtitle">એકાસણા અને બિયાસણા ની યાદી - બાળકોના નામ</p>
         </div>
         
         <div class="table-container fade-in">
-            <table class="ekasana-table" id="ekasana-table">
+            <table class="combined-table" id="combined-table">
                 <thead>
                     <tr>
                         <th>તારીખ</th>
-                        <th>બાળકનું નામ</th>
+                        <th class="ekasana-header">એકાસણા - બાળકનું નામ</th>
+                        <th class="biasana-header">બિયાસણા - બાળકનું નામ</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
@@ -279,18 +311,41 @@
                 </tbody>
             </table>
             
-            <div class="stats">
-                <div class="stat-item">
-                    <span class="stat-number" id="total-days">31</span>
-                    <span class="stat-label">કુલ દિવસો</span>
+            <div class="stats-grid">
+                <div class="stats-card ekasana-stats">
+                    <div class="stats-title">📅 એકાસણા આંકડા</div>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <span class="stat-number" id="ekasana-total">31</span>
+                            <span class="stat-label">કુલ દિવસો</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="ekasana-filled">16</span>
+                            <span class="stat-label">ભરેલા</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="ekasana-remaining">15</span>
+                            <span class="stat-label">બાકી</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="filled-days">16</span>
-                    <span class="stat-label">ભરેલા દિવસો</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number" id="remaining-days">15</span>
-                    <span class="stat-label">બાકી દિવસો</span>
+                
+                <div class="stats-card biasana-stats">
+                    <div class="stats-title">📅 બિયાસણા આંકડા</div>
+                    <div class="stats-row">
+                        <div class="stat-item">
+                            <span class="stat-number" id="biasana-total">31</span>
+                            <span class="stat-label">કુલ દિવસો</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="biasana-filled">18</span>
+                            <span class="stat-label">ભરેલા</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="biasana-remaining">13</span>
+                            <span class="stat-label">બાકી</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -298,7 +353,7 @@
                 <button class="btn btn-custom btn-print" onclick="printList()">
                     <i class="fas fa-print"></i> યાદી પ્રિન્ટ કરો
                 </button>
-                <button class="btn btn-custom" onclick="highlightEmpty()">
+                <button class="btn btn-custom btn-highlight" onclick="highlightEmpty()">
                     <i class="fas fa-exclamation-triangle"></i> બાકી નામ બતાવો
                 </button>
                 <button class="btn btn-custom btn-export" onclick="exportToCSV()">
@@ -316,12 +371,12 @@
             2: "પ્રાંશી ખંધાર",
             3: "",
             4: "",
-            5: "રીયા સૌરભભાઈ શાહ",
-            6: "રુદ્રા સૌરભભાઈ શાહ",
+            5: "રીયા એસ શાહ",
+            6: "રુદ્રા એસ શાહ",
             7: "ધ્રુવી ખંધાર",
             8: "દિયા ખંધાર",
             9: "મોશ્વા ગોપાણી",
-            10: "દર્શ સૌરીનભાઈ શાહ",
+            10: "દર્શ એસ શાહ",
             11: "પ્રિયાંક એમ શાહ",
             12: "",
             13: "",
@@ -345,23 +400,64 @@
             31: "હિયાંશી જસવાણી"
         };
 
-        // ટેબલ બનાવવાનું function
-        function createTable() {
+        // બિયાસણા ની યાદી ડેટા
+        const biasanaData = {
+            1: "",
+            2: "વીરાંશ ખંધાર",
+            3: "",
+            4: "ધન્વી શાહ",
+            5: "",
+            6: "",
+            7: "",
+            8: "રુદ્રા એસ શાહ",
+            9: "",
+            10: "ક્રિયાંશ ખંધાર",
+            11: "યશવી ડી દોશી",
+            12: "અમન ગોપાણી",
+            13: "",
+            14: "હિયા સંઘવી",
+            15: "વિવાન સી સંઘવી",
+            16: "",
+            17: "આંગી વોરા",
+            18: "લબ્ધી વોરા",
+            19: "લક્ષીતા જૈન / ગર્વિતા જૈન",
+            20: "",
+            21: "મન ખંધાર",
+            22: "",
+            23: "",
+            24: "રિયા એસ શાહ",
+            25: "",
+            26: "પાર્શ્વ ઈ શેઠ",
+            27: "",
+            28: "પ્રિયાંક શાહ",
+            29: "નવ્યા એચ શાહ",
+            30: "હિયાંશી વી જસવાણી",
+            31: "દર્શ એસ શાહ"
+        };
+
+        // કમ્બાઈન્ડ ટેબલ બનાવવાનું function
+        function createCombinedTable() {
             const tableBody = document.getElementById('table-body');
             let html = '';
             
             for (let i = 1; i <= 31; i++) {
-                const name = ekasanaData[i];
-                const isEmpty = !name || name.trim() === '';
-                const statusClass = isEmpty ? 'empty' : 'filled';
-                const statusIcon = isEmpty ? 'fas fa-times-circle' : 'fas fa-check-circle';
-                const displayName = isEmpty ? 'નામ બાકી છે' : name;
-                const cellClass = isEmpty ? 'empty-cell' : '';
+                const ekasanaName = ekasanaData[i];
+                const biasanaName = biasanaData[i];
+                
+                const ekasanaEmpty = !ekasanaName || ekasanaName.trim() === '';
+                const biasanaEmpty = !biasanaName || biasanaName.trim() === '';
+                
+                const ekasanaDisplay = ekasanaEmpty ? 'નામ બાકી છે' : ekasanaName;
+                const biasanaDisplay = biasanaEmpty ? 'નામ બાકી છે' : biasanaName;
+                
+                const ekasanaClass = ekasanaEmpty ? 'empty-cell' : '';
+                const biasanaClass = biasanaEmpty ? 'empty-cell' : '';
                 
                 html += `
-                    <tr class="${statusClass}" data-date="${i}">
+                    <tr data-date="${i}">
                         <td class="date-cell">${i}</td>
-                        <td class="name-cell ${cellClass}">${displayName}</td>
+                        <td class="name-cell ekasana-cell ${ekasanaClass}">${ekasanaDisplay}</td>
+                        <td class="name-cell biasana-cell ${biasanaClass}">${biasanaDisplay}</td>
                     </tr>
                 `;
             }
@@ -376,25 +472,40 @@
                 el.classList.remove('highlight-empty');
             });
             
-            // હવે empty rows highlight કરો
-            const emptyRows = document.querySelectorAll('tr.empty');
-            emptyRows.forEach(row => {
-                row.classList.add('highlight-empty');
-                row.classList.add('pulse');
+            // હવે empty cells highlight કરો
+            const emptyCells = document.querySelectorAll('.empty-cell');
+            emptyCells.forEach(cell => {
+                cell.classList.add('highlight-empty');
+                cell.classList.add('pulse');
                 setTimeout(() => {
-                    row.classList.remove('pulse');
+                    cell.classList.remove('pulse');
                 }, 2000);
             });
             
-            // બાકી તારીખો alert માં બતાવો
-            const emptyDates = [];
+            // બાકી તારીખો count કરો
+            const ekasanaEmpty = [];
+            const biasanaEmpty = [];
+            
             for (let i = 1; i <= 31; i++) {
                 if (!ekasanaData[i] || ekasanaData[i].trim() === '') {
-                    emptyDates.push(i);
+                    ekasanaEmpty.push(i);
+                }
+                if (!biasanaData[i] || biasanaData[i].trim() === '') {
+                    biasanaEmpty.push(i);
                 }
             }
             
-            alert(`બાકી તારીખો: ${emptyDates.join(', ')}\n\nકુલ ${emptyDates.length} તારીખો માટે નામ બાકી છે.`);
+            let message = '';
+            if (ekasanaEmpty.length > 0) {
+                message += `એકાસણા બાકી તારીખો: ${ekasanaEmpty.join(', ')}\n`;
+            }
+            if (biasanaEmpty.length > 0) {
+                message += `બિયાસણા બાકી તારીખો: ${biasanaEmpty.join(', ')}\n`;
+            }
+            
+            message += `\nએકાસણા: ${ekasanaEmpty.length} બાકી\nબિયાસણા: ${biasanaEmpty.length} બાકી`;
+            
+            alert(message);
         }
 
         // પ્રિન્ટ કરવાનું function
@@ -404,41 +515,56 @@
 
         // CSV export function
         function exportToCSV() {
-            let csvContent = "તારીખ,બાળકનું નામ\n";
+            let csvContent = "તારીખ,એકાસણા - બાળકનું નામ,બિયાસણા - બાળકનું નામ\n";
             
             for (let i = 1; i <= 31; i++) {
-                const name = ekasanaData[i];
-                const isEmpty = !name || name.trim() === '';
-                const displayName = isEmpty ? 'નામ બાકી છે' : name;
+                const ekasanaName = ekasanaData[i];
+                const biasanaName = biasanaData[i];
                 
-                csvContent += `${i},"${displayName}"\n`;
+                const ekasanaDisplay = (!ekasanaName || ekasanaName.trim() === '') ? 'નામ બાકી છે' : ekasanaName;
+                const biasanaDisplay = (!biasanaName || biasanaName.trim() === '') ? 'નામ બાકી છે' : biasanaName;
+                
+                csvContent += `${i},"${ekasanaDisplay}","${biasanaDisplay}"\n`;
             }
             
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             const url = URL.createObjectURL(blob);
             link.setAttribute('href', url);
-            link.setAttribute('download', 'ekasana_list.csv');
+            link.setAttribute('download', 'ekasana_biasana_combined_list.csv');
             link.style.visibility = 'hidden';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
         }
 
-        // પેજ લોડ થતા જ ટેબલ બનાવો
-        document.addEventListener('DOMContentLoaded', function() {
-            createTable();
+        // આંકડા કાઢવાનું function
+        function calculateStats() {
+            let ekasanaFilled = 0;
+            let biasanaFilled = 0;
             
-            // સ્ટેટ્સ અપડેટ કરો
-            let filledCount = 0;
             for (let i = 1; i <= 31; i++) {
                 if (ekasanaData[i] && ekasanaData[i].trim() !== '') {
-                    filledCount++;
+                    ekasanaFilled++;
+                }
+                if (biasanaData[i] && biasanaData[i].trim() !== '') {
+                    biasanaFilled++;
                 }
             }
             
-            document.getElementById('filled-days').textContent = filledCount;
-            document.getElementById('remaining-days').textContent = 31 - filledCount;
+            // એકાસણા stats
+            document.getElementById('ekasana-filled').textContent = ekasanaFilled;
+            document.getElementById('ekasana-remaining').textContent = 31 - ekasanaFilled;
+            
+            // બિયાસણા stats
+            document.getElementById('biasana-filled').textContent = biasanaFilled;
+            document.getElementById('biasana-remaining').textContent = 31 - biasanaFilled;
+        }
+
+        // પેજ લોડ થતા જ ટેબલ બનાવો
+        document.addEventListener('DOMContentLoaded', function() {
+            createCombinedTable();
+            calculateStats();
         });
     </script>
 </body>
