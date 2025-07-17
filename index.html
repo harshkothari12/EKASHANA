@@ -266,6 +266,43 @@
             box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
         }
 
+        /* Header alignment and style improvements */
+        .institution-name {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #8e44ad;
+            margin-bottom: 8px;
+            margin-top: 0;
+        }
+        .main-greeting {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+        .header .address {
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #34495e;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+        @media (max-width: 768px) {
+            .institution-name {
+                font-size: 1.3rem;
+            }
+            .main-greeting {
+                font-size: 1.1rem;
+            }
+            .header .address {
+                font-size: 0.95rem;
+            }
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -347,15 +384,25 @@
 </head>
 <body>
     <div class="container">
-        <div class="header fade-in">
-            <h1>🌹 જય જિનેન્દ્ર 🌹</h1>
-            <p class="subtitle">
-                વિરતી જૈન પાઠશાળા<br>
-                સરનામું : 83/A શ્રીકુંજ શોપિંગ સેન્ટર, પંચદેવ મંદિર નજીક,<br>
-                મુરલીધર ડેરી, ઘાટલોડિયા, અહેમદાબાદ, ગુજરાત - 380061<br>
-                📞 મોબાઇલ નંબર : 9725247990
-            </p>
-            <p class="date-info">આજની તારીખ: ૧૩ જુલાઈ, ૨૦૨૫ | શ્રાવણ કૃષ્ણા ૩</p>
+        <div class="header fade-in glass-card">
+            <div class="header-top">
+                <span class="header-icon">🌹</span>
+                <span class="header-greeting">જય જિનેન્દ્ર</span>
+                <span class="header-icon">🌹</span>
+            </div>
+            <h2 class="institution-name">વિરતી જૈન પાઠશાળા</h2>
+            <div class="header-divider"></div>
+            <div class="header-details">
+                <div class="header-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>83/A શ્રીકુંજ શોપિંગ સેન્ટર, પંચદેવ મંદિર નજીક,<br>મુરલીધર ડેરી, ઘાટલોડિયા, અહેમદાબાદ, ગુજરાત - 380061</span>
+                </div>
+                <div class="header-detail">
+                    <i class="fas fa-phone"></i>
+                    <span>મોબાઇલ: 9725247990</span>
+                </div>
+            </div>
+            <p class="date-info" id="date-info"></p>
             <div class="today-info">
                 <p class="subtitle">આજના એકાસણા અને બિયાસણા:</p>
                 <p id="today-ekasana" class="today-name ekasana-today">એકાસણા: નામ બાકી છે</p>
@@ -502,6 +549,30 @@
             31: "દર્શ એસ શાહ"
         };
 
+        // Helper to convert English numbers to Gujarati
+        function toGujaratiNumber(num) {
+            const gujaratiDigits = ['૦','૧','૨','૩','૪','૫','૬','૭','૮','૯'];
+            return num.toString().split('').map(d => gujaratiDigits[parseInt(d, 10)] || d).join('');
+        }
+
+        // Helper to get Gujarati month name
+        function getGujaratiMonth(monthIndex) {
+            const months = [
+                'જાન્યુઆરી', 'ફેબ્રુઆરી', 'માર્ચ', 'એપ્રિલ', 'મે', 'જૂન',
+                'જુલાઈ', 'ઑગસ્ટ', 'સપ્ટેમ્બર', 'ઑક્ટોબર', 'નવેમ્બર', 'ડિસેમ્બર'
+            ];
+            return months[monthIndex];
+        }
+
+        // Set today's date in Gujarati
+        function setGujaratiDate() {
+            const today = new Date();
+            const day = toGujaratiNumber(today.getDate());
+            const month = getGujaratiMonth(today.getMonth());
+            const year = toGujaratiNumber(today.getFullYear());
+            document.getElementById('date-info').textContent = `આજની તારીખ: ${day} ${month}, ${year}`;
+        }
+
         // કમ્બાઈન્ડ ટેબલ બનાવવાનું function
         function createCombinedTable() {
             const tableBody = document.getElementById('table-body');
@@ -628,25 +699,37 @@
             document.getElementById('biasana-remaining').textContent = 31 - biasanaFilled;
         }
 
-        // આજની તારીખ માટે નામ બતાવવાનું function
+        // Show today's names based on today's date
         function showTodaysNames() {
-            const today = 13; // આજની તારીખ
-            
-            const todayEkasana = ekasanaData[today];
-            const todayBiasana = biasanaData[today];
-            
+            const today = new Date();
+            const day = today.getDate(); // 1-based
+            const todayEkasana = ekasanaData[day];
+            const todayBiasana = biasanaData[day];
             const ekasanaDisplay = (!todayEkasana || todayEkasana.trim() === '') ? 'નામ બાકી છે' : todayEkasana;
             const biasanaDisplay = (!todayBiasana || todayBiasana.trim() === '') ? 'નામ બાકી છે' : todayBiasana;
-            
             document.getElementById('today-ekasana').textContent = `એકાસણા: ${ekasanaDisplay}`;
             document.getElementById('today-biasana').textContent = `બિયાસણા: ${biasanaDisplay}`;
         }
 
+        // તારીખ બતાવવાનું function
+        function setDateInfo() {
+            const today = new Date();
+            const day = today.getDate();
+            const month = today.toLocaleString('gu', { month: 'numeric' });
+            const year = today.getFullYear();
+            const dayOfWeek = today.toLocaleString('gu', { weekday: 'numeric' });
+
+            const dateInfoElement = document.getElementById('date-info');
+            dateInfoElement.textContent = `આજની તારીખ: ${day} ${month}, ${year} | શ્રાવણ કૃષ્ણા ${dayOfWeek}`;
+        }
+
         // પેજ લોડ થતા જ ટેબલ બનાવો
         document.addEventListener('DOMContentLoaded', function() {
+            setGujaratiDate();
             createCombinedTable();
             calculateStats();
             showTodaysNames();
+            setDateInfo(); // તારીખ બતાવવાનું
         });
     </script>
 </body>
