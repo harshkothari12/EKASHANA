@@ -37,22 +37,56 @@
             backdrop-filter: blur(10px);
         }
 
-        .header h1 {
-            color: #2c3e50;
-            font-size: 2.5rem;
+        .header-top {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .header-icon {
+            font-size: 1.5rem;
+        }
+
+        .header-greeting {
+            font-size: 1.8rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            color: #8e44ad;
         }
 
-        .header .subtitle {
+        .institution-name {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #8e44ad;
+            margin-bottom: 15px;
+        }
+
+        .header-divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8e44ad, transparent);
+            margin: 15px 0;
+        }
+
+        .header-details {
+            margin-bottom: 20px;
+        }
+
+        .header-detail {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
             color: #34495e;
-            font-size: 1.1rem;
             font-weight: 500;
-            margin-bottom: 10px;
         }
 
-        .header .date-info {
+        .header-detail i {
+            margin-right: 8px;
+            color: #8e44ad;
+        }
+
+        .date-info {
             color: #e74c3c;
             font-size: 1.2rem;
             font-weight: 600;
@@ -65,6 +99,13 @@
             border-radius: 15px;
             padding: 15px;
             margin: 15px 0;
+        }
+
+        .subtitle {
+            color: #34495e;
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
         }
 
         .today-name {
@@ -142,9 +183,8 @@
 
         .date-cell {
             font-weight: 700;
-            color: #2c3e50;
+            color: white;
             background: linear-gradient(135deg, #3498db, #2980b9);
-            color: white !important;
             font-size: 1.1rem;
             width: 80px;
         }
@@ -266,69 +306,40 @@
             box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
         }
 
-        /* Header alignment and style improvements */
-        .institution-name {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: #8e44ad;
-            margin-bottom: 8px;
-            margin-top: 0;
-        }
-        .main-greeting {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 10px;
-            margin-top: 0;
-        }
-        .header .address {
-            text-align: center;
-            font-size: 1.05rem;
-            font-weight: 500;
-            color: #34495e;
-            margin-bottom: 10px;
-            margin-top: 0;
-        }
         @media (max-width: 768px) {
             .institution-name {
-                font-size: 1.3rem;
+                font-size: 1.8rem;
             }
-            .main-greeting {
-                font-size: 1.1rem;
-            }
-            .header .address {
-                font-size: 0.95rem;
-            }
-        }
 
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
+            .header-greeting {
+                font-size: 1.4rem;
             }
-            
+
             .combined-table {
                 font-size: 0.9rem;
             }
-            
+
             .combined-table th,
             .combined-table td {
                 padding: 10px 8px;
             }
-            
+
             .name-cell {
                 min-width: 200px;
                 padding-left: 10px;
             }
-            
+
             .stats-grid {
                 grid-template-columns: 1fr;
             }
-            
+
             .btn-custom {
                 margin: 5px;
                 padding: 10px 20px;
+            }
+
+            .header-detail {
+                flex-direction: column;
             }
         }
 
@@ -361,21 +372,21 @@
                 background: white !important;
                 padding: 0 !important;
             }
-            
+
             .header {
                 background: white !important;
                 box-shadow: none !important;
             }
-            
+
             .table-container {
                 background: white !important;
                 box-shadow: none !important;
             }
-            
+
             .action-buttons {
                 display: none !important;
             }
-            
+
             .stats-grid {
                 display: none !important;
             }
@@ -384,7 +395,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="header fade-in glass-card">
+        <div class="header fade-in">
             <div class="header-top">
                 <span class="header-icon">🌹</span>
                 <span class="header-greeting">જય જિનેન્દ્ર</span>
@@ -408,6 +419,11 @@
                 <p id="today-ekasana" class="today-name ekasana-today">એકાસણા: નામ બાકી છે</p>
                 <p id="today-biasana" class="today-name biasana-today">બિયાસણા: નામ બાકી છે</p>
             </div>
+            <div class="today-info" style="margin-top: 15px; border-color: #f39c12; background: rgba(243, 156, 18, 0.1);">
+                <p class="subtitle">આવતીકાલના એકાસણા અને બિયાસણા:</p>
+                <p id="tomorrow-ekasana" class="today-name" style="color: #f39c12;">એકાસણા: નામ બાકી છે</p>
+                <p id="tomorrow-biasana" class="today-name" style="color: #f39c12;">બિયાસણા: નામ બાકી છે</p>
+            </div>
             <p class="subtitle">એકાસણા અને બિયાસણા ની યાદી - બાળકોના નામ</p>
         </div>
 
@@ -424,7 +440,7 @@
                     <!-- Table rows will be populated by JavaScript -->
                 </tbody>
             </table>
-            
+
             <div class="stats-grid">
                 <div class="stats-card ekasana-stats">
                     <div class="stats-title">📅 એકાસણા આંકડા</div>
@@ -434,16 +450,16 @@
                             <span class="stat-label">કુલ દિવસો</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="ekasana-filled">16</span>
+                            <span class="stat-number" id="ekasana-filled">0</span>
                             <span class="stat-label">ભરેલા</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="ekasana-remaining">15</span>
+                            <span class="stat-number" id="ekasana-remaining">31</span>
                             <span class="stat-label">બાકી</span>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="stats-card biasana-stats">
                     <div class="stats-title">📅 બિયાસણા આંકડા</div>
                     <div class="stats-row">
@@ -452,17 +468,17 @@
                             <span class="stat-label">કુલ દિવસો</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="biasana-filled">18</span>
+                            <span class="stat-number" id="biasana-filled">0</span>
                             <span class="stat-label">ભરેલા</span>
                         </div>
                         <div class="stat-item">
-                            <span class="stat-number" id="biasana-remaining">13</span>
+                            <span class="stat-number" id="biasana-remaining">31</span>
                             <span class="stat-label">બાકી</span>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="action-buttons">
                 <button class="btn btn-custom btn-print" onclick="printList()">
                     <i class="fas fa-print"></i> યાદી પ્રિન્ટ કરો
@@ -577,20 +593,20 @@
         function createCombinedTable() {
             const tableBody = document.getElementById('table-body');
             let html = '';
-            
+
             for (let i = 1; i <= 31; i++) {
                 const ekasanaName = ekasanaData[i];
                 const biasanaName = biasanaData[i];
-                
+
                 const ekasanaEmpty = !ekasanaName || ekasanaName.trim() === '';
                 const biasanaEmpty = !biasanaName || biasanaName.trim() === '';
-                
+
                 const ekasanaDisplay = ekasanaEmpty ? 'નામ બાકી છે' : ekasanaName;
                 const biasanaDisplay = biasanaEmpty ? 'નામ બાકી છે' : biasanaName;
-                
+
                 const ekasanaClass = ekasanaEmpty ? 'empty-cell' : '';
                 const biasanaClass = biasanaEmpty ? 'empty-cell' : '';
-                
+
                 html += `
                     <tr data-date="${i}">
                         <td class="date-cell">${i}</td>
@@ -599,7 +615,7 @@
                     </tr>
                 `;
             }
-            
+
             tableBody.innerHTML = html;
         }
 
@@ -609,7 +625,7 @@
             document.querySelectorAll('.highlight-empty').forEach(el => {
                 el.classList.remove('highlight-empty');
             });
-            
+
             // હવે empty cells highlight કરો
             const emptyCells = document.querySelectorAll('.empty-cell');
             emptyCells.forEach(cell => {
@@ -619,11 +635,11 @@
                     cell.classList.remove('pulse');
                 }, 2000);
             });
-            
+
             // બાકી તારીખો count કરો
             const ekasanaEmpty = [];
             const biasanaEmpty = [];
-            
+
             for (let i = 1; i <= 31; i++) {
                 if (!ekasanaData[i] || ekasanaData[i].trim() === '') {
                     ekasanaEmpty.push(i);
@@ -632,7 +648,7 @@
                     biasanaEmpty.push(i);
                 }
             }
-            
+
             let message = '';
             if (ekasanaEmpty.length > 0) {
                 message += `એકાસણા બાકી તારીખો: ${ekasanaEmpty.join(', ')}\n`;
@@ -640,9 +656,9 @@
             if (biasanaEmpty.length > 0) {
                 message += `બિયાસણા બાકી તારીખો: ${biasanaEmpty.join(', ')}\n`;
             }
-            
+
             message += `\nએકાસણા: ${ekasanaEmpty.length} બાકી\nબિયાસણા: ${biasanaEmpty.length} બાકી`;
-            
+
             alert(message);
         }
 
@@ -654,17 +670,17 @@
         // CSV export function
         function exportToCSV() {
             let csvContent = "તારીખ,એકાસણા - બાળકનું નામ,બિયાસણા - બાળકનું નામ\n";
-            
+
             for (let i = 1; i <= 31; i++) {
                 const ekasanaName = ekasanaData[i];
                 const biasanaName = biasanaData[i];
-                
+
                 const ekasanaDisplay = (!ekasanaName || ekasanaName.trim() === '') ? 'નામ બાકી છે' : ekasanaName;
                 const biasanaDisplay = (!biasanaName || biasanaName.trim() === '') ? 'નામ બાકી છે' : biasanaName;
-                
+
                 csvContent += `${i},"${ekasanaDisplay}","${biasanaDisplay}"\n`;
             }
-            
+
             const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             const url = URL.createObjectURL(blob);
@@ -680,7 +696,7 @@
         function calculateStats() {
             let ekasanaFilled = 0;
             let biasanaFilled = 0;
-            
+
             for (let i = 1; i <= 31; i++) {
                 if (ekasanaData[i] && ekasanaData[i].trim() !== '') {
                     ekasanaFilled++;
@@ -689,38 +705,38 @@
                     biasanaFilled++;
                 }
             }
-            
+
             // એકાસણા stats
             document.getElementById('ekasana-filled').textContent = ekasanaFilled;
             document.getElementById('ekasana-remaining').textContent = 31 - ekasanaFilled;
-            
+
             // બિયાસણા stats
             document.getElementById('biasana-filled').textContent = biasanaFilled;
             document.getElementById('biasana-remaining').textContent = 31 - biasanaFilled;
         }
 
-        // Show today's names based on today's date
+        // Show today's and tomorrow's names based on date
         function showTodaysNames() {
-            const today = new Date();
-            const day = today.getDate(); // 1-based
-            const todayEkasana = ekasanaData[day];
-            const todayBiasana = biasanaData[day];
-            const ekasanaDisplay = (!todayEkasana || todayEkasana.trim() === '') ? 'નામ બાકી છે' : todayEkasana;
-            const biasanaDisplay = (!todayBiasana || todayBiasana.trim() === '') ? 'નામ બાકી છે' : todayBiasana;
-            document.getElementById('today-ekasana').textContent = `એકાસણા: ${ekasanaDisplay}`;
-            document.getElementById('today-biasana').textContent = `બિયાસણા: ${biasanaDisplay}`;
-        }
-
-        // તારીખ બતાવવાનું function
-        function setDateInfo() {
-            const today = new Date();
-            const day = today.getDate();
-            const month = today.toLocaleString('gu', { month: 'numeric' });
-            const year = today.getFullYear();
-            const dayOfWeek = today.toLocaleString('gu', { weekday: 'numeric' });
-
-            const dateInfoElement = document.getElementById('date-info');
-            dateInfoElement.textContent = `આજની તારીખ: ${day} ${month}, ${year} | શ્રાવણ કૃષ્ણા ${dayOfWeek}`;
+            // Hardcoded values as per requirement
+            const todayDay = 27; // આજ ૨૭ તારીખ
+            const tomorrowDay = 28; // આવતીકાલ ૨૮ તારીખ
+            
+            // આજના નામ (૨૭ તારીખ)
+            const todayEkasana = "જૈવલ એસ શાહ";
+            const todayBiasana = "વિહાના સંઘવી";
+            document.getElementById('today-ekasana').textContent = `એકાસણા: ${todayEkasana}`;
+            document.getElementById('today-biasana').textContent = `બિયાસણા: ${todayBiasana}`;
+            
+            // આવતીકાલના નામ (૨૮ તારીખ)
+            if (tomorrowDay <= 31) {
+                const tomorrowEkasana = "દિયા ખંધાર";
+                const tomorrowBiasana = "પ્રિયાંક શાહ";
+                document.getElementById('tomorrow-ekasana').textContent = `એકાસણા: ${tomorrowEkasana}`;
+                document.getElementById('tomorrow-biasana').textContent = `બિયાસણા: ${tomorrowBiasana}`;
+            } else {
+                document.getElementById('tomorrow-ekasana').textContent = 'એકાસણા: મહિનો પૂરો';
+                document.getElementById('tomorrow-biasana').textContent = 'બિયાસણા: મહિનો પૂરો';
+            }
         }
 
         // પેજ લોડ થતા જ ટેબલ બનાવો
@@ -729,7 +745,6 @@
             createCombinedTable();
             calculateStats();
             showTodaysNames();
-            setDateInfo(); // તારીખ બતાવવાનું
         });
     </script>
 </body>
