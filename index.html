@@ -717,20 +717,22 @@
 
         // Show today's and tomorrow's names based on date
         function showTodaysNames() {
-            // Hardcoded values as per requirement
-            const todayDay = 27; // આજ ૨૭ તારીખ
-            const tomorrowDay = 28; // આવતીકાલ ૨૮ તારીખ
-            
-            // આજના નામ (૨૭ તારીખ)
-            const todayEkasana = "જૈવલ એસ શાહ";
-            const todayBiasana = "વિહાના સંઘવી";
+            const today = new Date();
+            const todayDay = today.getDate(); // Get current day of the month
+            const tomorrow = new Date(today);
+            tomorrow.setDate(today.getDate() + 1); // Get tomorrow's date
+            const tomorrowDay = tomorrow.getDate(); // Get tomorrow's day of the month
+
+            // આજના નામ
+            const todayEkasana = ekasanaData[todayDay] || 'નામ બાકી છે';
+            const todayBiasana = biasanaData[todayDay] || 'નામ બાકી છે';
             document.getElementById('today-ekasana').textContent = `એકાસણા: ${todayEkasana}`;
             document.getElementById('today-biasana').textContent = `બિયાસણા: ${todayBiasana}`;
             
-            // આવતીકાલના નામ (૨૮ તારીખ)
+            // આવતીકાલના નામ
             if (tomorrowDay <= 31) {
-                const tomorrowEkasana = "દિયા ખંધાર";
-                const tomorrowBiasana = "પ્રિયાંક શાહ";
+                const tomorrowEkasana = ekasanaData[tomorrowDay] || 'નામ બાકી છે';
+                const tomorrowBiasana = biasanaData[tomorrowDay] || 'નામ બાકી છે';
                 document.getElementById('tomorrow-ekasana').textContent = `એકાસણા: ${tomorrowEkasana}`;
                 document.getElementById('tomorrow-biasana').textContent = `બિયાસણા: ${tomorrowBiasana}`;
             } else {
